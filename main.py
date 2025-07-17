@@ -1,6 +1,5 @@
 import json
 import sys
-from aim import Run
 import shutil
 
 sys.path.extend(["../", "./"])
@@ -71,6 +70,7 @@ if __name__ == "__main__":
     elif args.mode == "AL_TRAIN":
         tool = QueryInference(args.db,coefs=coefs,scale=scale,args=args,load=args.load_model,load_model_name=f"{args.load_model_name}")
         if args.aim:
+            from aim import Run
             run = Run()
             run["hparams"] = vars(args)
         else:

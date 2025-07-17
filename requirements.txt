@@ -10,4 +10,4 @@ scipy
 doepy
 SALib
 sqlparse
-aim
+# aim (since NOT available for Python 3.13)

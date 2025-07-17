@@ -161,7 +161,7 @@ class Bucket:
                             infos[num] = set()
                 keys = list(infos.keys())
                 keys.sort()
-                last_key = -np.Inf
+                last_key = -np.inf
                 for key in keys:
                     buckets.append({
                         "range": [last_key, key],
@@ -169,7 +169,7 @@ class Bucket:
                     })
                     last_key = key
                 buckets.append({
-                        "range": [last_key, np.Inf],
+                        "range": [last_key, np.inf],
                         "queries": []
                     })
             elif cparam in ['FilterNum', 'FilterOffset', 'FilterIntegerRatio', 'FilterFloatRatio', 'FilterStrRatio', 'FilterColumnNum',"SoutAvg"]:
@@ -189,7 +189,7 @@ class Bucket:
                     buckets.append({"range": [
                     ((max_c - min_c) / BUCKET_NUM) * i + min_c, ((max_c - min_c) / BUCKET_NUM) * (i + 1) + min_c],
                                     "queries": []})
-                buckets[-1]['range'][1] = np.Inf
+                buckets[-1]['range'][1] = np.inf
             elif cparam in ['ParentOp',  'LeftOp', 'RightOp']:
                 for value in ['Aggregate', 'Sort', 'Seq Scan', 'Index Scan','Index Only Scan','Limit', 'Hash Join', 'Hash', 'Nested Loop', 'Materialize','Merge Join', 'Subquery Scan','Group','Incremental Sort','CTE Scan','Append','None','others']:
                     buckets.append({"range": [value],

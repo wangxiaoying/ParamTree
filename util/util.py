@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.metrics import mean_absolute_percentage_error,mean_squared_error,mean_squared_log_error
+from sklearn.metrics import root_mean_squared_error
 import json
 import queue
 import re
@@ -29,7 +29,7 @@ def qerror(y_pred, y_true,percent=50,score = False):
     return r
 
 def rms(Y_actual, Y_Predicted):
-    return mean_squared_error(Y_Predicted,Y_actual, squared=False)
+    return root_mean_squared_error(Y_Predicted,Y_actual)
 
 def deal_plan(plan):
     add_parent_info(plan)
@@ -63,7 +63,8 @@ def add_initplan_info(plan):
     for tt in plans:
         if 'Subplan Name' in tt.keys():
             if tt['Parent Relationship'] in ['InitPlan'] and 'InitPlan' in tt['Subplan Name']:
-                key = re.findall(r'\$\d+', tt['Subplan Name'])[0]
+                tmp = re.findall(r'\$\d+', tt['Subplan Name'])
+                key = tmp[0] if len(tmp) > 0 else 'NONE' # Happens in TPC-DS SF=10.
                 init_plan[key] = tt
             elif tt['Parent Relationship'] in ['InitPlan'] and 'CTE' in tt['Subplan Name']:
                 key = tt['Subplan Name'].split(" ")[1]

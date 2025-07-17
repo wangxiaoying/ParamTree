@@ -389,7 +389,7 @@ class Node():
         else:
             leaf_min = np.floor(len(dataset)/branch_num)
         data = []
-        last_row_value = -np.Inf
+        last_row_value = -np.inf
         bucket_idx = 0
         for row in dataset:
             if row[index] == last_row_value:

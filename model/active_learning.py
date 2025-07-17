@@ -30,7 +30,7 @@ class ActiveLearningTool():
         self.knob_change = knob_change
         self.scheme_info = scheme_info
         self.plan_tool = Plan_class(self.scheme_info)
-        self.kb = Knob_rs()
+        self.kb = Knob_rs(db_name)
         self.sqlmodify_tool = SqlModify(self.db_connector,scheme_info)
         self.checked_dims = {t:[] for t in self.feature_tool.features.keys()}
         self.bucket_info = Bucket(db_name)
